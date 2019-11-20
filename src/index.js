@@ -12,10 +12,9 @@ class App extends React.Component {
       position => this.setState({ lat: position.coords.latitude }),
       err => this.setState({ errorMessage: err.message })
     );
-  }
+  };
 
-  //react says we have to define render
-  render() {
+  renderContent() {
     if(this.state.errorMessage && !this.state.lat) {
       return <div>Error Message: {this.state.errorMessage}</div>;
     }
@@ -23,6 +22,14 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat}/>
     }
     return <Loader message="Please accept location request"/>;
+  }
+
+  render() {
+    return (
+      <div className="border red">
+        {this.renderContent()};
+      </div>
+    )
   }
 }
 
